@@ -178,7 +178,7 @@ def draw(filename: str, n_coeffs: int = 50, user_scale: float = 1.0):
         f"Fourier Circle Drawing  ·  {os.path.basename(filename)}"
         f"  ·  Detail {round(n_coeffs / 300 * 100)}%"
     )
-    _icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "icon.png")
+    _icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icon.png")
     if os.path.exists(_icon_path):
         pygame.display.set_icon(pygame.image.load(_icon_path))
 

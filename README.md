@@ -1,8 +1,14 @@
 # Fourier Circle Drawing
 
-> Turn any image into an animated Fourier epicycle drawing — rotating circles that trace out the original shape.
+> Turn any image into an animated Fourier epicycle drawing — rotating circles that trace your image's contours using the Discrete Fourier Transform.
 
-<!-- Add a demo GIF here:  ![demo](examples/demo.gif) -->
+---
+
+## Demo
+
+| Input image | Fourier animation |
+|:-----------:|:-----------------:|
+| ![input](images/test.png) | ![demo](images/test.gif) |
 
 ---
 
@@ -24,7 +30,8 @@ Inspired by [3Blue1Brown's Fourier series videos](https://www.youtube.com/watch?
 - **Scale** slider (10–500 %) zooms the preview and animation
 - Precise parameter input via **spinboxes** (type a value or use ↑↓ keys)
 - **Save Preview as PNG** — export the current static preview with one click
-- **Screenshot shortcut** in the animation window: press **S** or click the on-screen button → saved to `screenshots/` with a timestamp
+- **Auto GIF recording** — every animation is automatically recorded; click **Download GIF Recording** to save it to the `recordings/` folder
+- **Screenshot shortcut** — press **S** in the animation window → saved to `screenshots/` with a timestamp
 
 ---
 
@@ -42,6 +49,7 @@ pip install -r requirements.txt
 | `numpy` | FFT computation |
 | `pyqt5` | Main GUI window |
 | `pygame` | Animated epicycle rendering |
+| `Pillow` | GIF recording |
 
 ---
 
@@ -53,9 +61,6 @@ pip install -r requirements.txt
 
 # 2. Launch the GUI
 python main.py
-
-# — or directly —
-python GUI.py
 ```
 
 ### Step-by-step
@@ -65,12 +70,13 @@ python GUI.py
 3. Adjust **Detail Level** and **Scale** to taste
 4. Click **Save Preview as PNG** to export the static result
 5. Click **③ Start Animation** — watch the epicircles draw your image!
+6. When the animation window closes, click **Download GIF Recording** to save the GIF to `recordings/`
 
 ### Animation window controls
 
-| Key / Action | Effect |
-|---|---|
-| **S** or click **[S] Screenshot** button | Save current frame → `screenshots/fourier_YYYYMMDD_HHMMSS.png` |
+| Key | Effect |
+|-----|--------|
+| **S** | Save screenshot → `screenshots/fourier_YYYYMMDD_HHMMSS.png` |
 | **ESC** | Exit the animation |
 
 ---
@@ -92,7 +98,7 @@ python main.py --svg path/to/file.svg --coeffs 100 --scale 1.2
 ```
 Image (PNG/JPG)
     │
-    ▼  OpenCV: Canny edge + findContours
+    ▼  OpenCV: threshold + findContours
 SVG paths  (series of (x, y) points per stroke)
     │
     ▼  NumPy FFT  →  low-pass filter (keep N coefficients)
@@ -108,12 +114,13 @@ Animated epicircles  →  traces the original shape
 
 ```
 Fourier_drawing/
-├── main.py          # CLI entry point
-├── GUI.py           # PyQt5 interactive window
-├── fft.py           # FFT processing + Pygame animation
+├── main.py          # Entry point — GUI + CLI
+├── fft.py           # FFT processing + Pygame animation + GIF recording
 ├── SVG.py           # Bitmap → SVG contour converter
 ├── requirements.txt
-├── examples/        # Sample input images
+├── icon.png         # App icon
+├── images/          # Intermediate files (temp SVG, demo assets)
+├── recordings/      # Auto-saved GIF recordings
 └── screenshots/     # Auto-saved animation screenshots
 ```
 

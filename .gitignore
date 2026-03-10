@@ -2,11 +2,12 @@ __pycache__/
 *.pyc
 *.pyo
 images/
-screenshots/
+recordings/
 output/
-*.gif
 .venv/
 venv/
 *.egg-info/
 dist/
 build/
+!images/test.png
+!images/test.gif

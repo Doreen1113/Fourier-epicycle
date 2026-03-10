@@ -9,5 +9,4 @@ venv/
 *.egg-info/
 dist/
 build/
-!images/test.png
-!images/test.gif
+

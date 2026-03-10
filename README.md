@@ -8,7 +8,7 @@
 
 | Input image | Fourier animation |
 |:-----------:|:-----------------:|
-| ![input](images/test.png) | ![demo](images/test.gif) |
+| ![input](test.png) | ![demo](test.gif) |
 
 ---
 
